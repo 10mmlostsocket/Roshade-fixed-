@@ -5,6 +5,7 @@
 
 RequestExecutionLevel admin
 
+# commit
 # Uninstallation
 Section Uninstall
     ReadRegStr $0 HKCU "${SELFREGLOC}" "RobloxPath"
