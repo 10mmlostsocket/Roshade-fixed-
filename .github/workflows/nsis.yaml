@@ -96,7 +96,17 @@ jobs:
         with:
           file-url: 'https://raw.githubusercontent.com/vvaldez/yumi/master/StrContains.nsh'
           location: 'Setup/Util'
+          
+      - name: Install NSIS
+        run: choco install nsis -y
 
+      - name: Compile installer
+        uses: joncloud/makensis-action@v3.7
+        with:
+          script-file: Setup/Setup.nsi
+          arguments: /X"SetCompressor /FINAL lzma"
+          additional-plugin-paths: nsis_plugins
+          
       - name: Compile installer
         uses: joncloud/makensis-action@v3.7
         with:
