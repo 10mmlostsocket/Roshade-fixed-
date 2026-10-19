@@ -70,6 +70,15 @@
             File "${SourcePath}\reshade.dll"
             !insertmacro ToLog $LOGFILE "Output" "Rendering API: ${RENDERAPI}."
             Rename "$RobloxPath\reshade.dll" "$RobloxPath\${RENDERAPI}"
+            IfFileExists "$RobloxPath\${RENDERAPI}" rename_success rename_failed
+            rename_success: 
+                !insertmacro ToLog $LOGFILE "Output" "Rendering API DLL created successfully."
+                Goto rename_done
+
+            rename_failed:
+                !insertmacro ToLog $LOGFILE "Error" "Failed to create rendering API DLL."
+
+                rename_done:
 
             ${If} ${FileExists} "$RobloxPath\Reshade.ini"
                 !insertmacro ToLog $LOGFILE "Output" "Existing Reshade settings have been found."
